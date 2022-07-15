@@ -9,4 +9,5 @@ int main() {
     cout<<"Enter name and age: ";
     cin>>name>>age;
     cout<<name<<(age>=18 ? " can vote." : " can't vote.");
+    return 0;
 }
