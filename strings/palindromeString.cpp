@@ -10,13 +10,13 @@ int main()
     bool isPalindrome = true;
     cout << "Enter a string: ";
     cin >> str;
-    for (int i = str.length(); i >= 0; i--)
+    for (int i = str.length() - 1; i >= 0; i--)
     {
         palindromeString += str[i];
     }
     cout<<"Reverse: "<<palindromeString<<endl;
-    for (int i = 0, j = palindromeString.length() - 1; i < palindromeString.length(); i++, j--) {
-        if (str[i] != palindromeString[j]) {
+    for (int i = 0; i<palindromeString.length(); i++) {
+        if (str[i] != palindromeString[i]) {
             isPalindrome = false;
             break;
         }
