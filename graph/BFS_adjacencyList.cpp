@@ -1,4 +1,4 @@
-// create a graph an dapply BFS
+// BFS using adjacency list
 
 #include <iostream>
 #include <vector>
@@ -14,8 +14,8 @@ class Graph
 public:
     Graph(int size)
     {
-        this->size = size;
         adj = new vector<int>[size + 1];
+        this->size = size;
     }
 
 public:
@@ -28,10 +28,10 @@ public:
 public:
     void printGraph()
     {
-        for (int i = 1; i <= this->size; i++)
+        for (int i = 0; i <= this->size; i++)
         {
             cout << i << "->";
-            for (auto v : adj[i])
+            for (int v : adj[i])
             {
                 cout << v << ",";
             }
@@ -40,19 +40,32 @@ public:
     }
 
 public:
+    void printGraph(vector<int> v)
+    {
+        cout << "BFS" << endl;
+        for (auto x : v)
+        {
+            cout << x << ",";
+        }
+        cout << endl;
+    }
+
+public:
     vector<int> BFS(int source)
     {
-        vector<bool> visited(this->size + 1, false);
-        vector<int> bfsVector;
+        vector<int> visited(this->size + 1, false);
         queue<int> q;
+        vector<int> bfsVector;
 
-        q.push(source);
         visited[source] = true;
+        q.push(source);
+
         while (!q.empty())
         {
             int top = q.front();
             q.pop();
             bfsVector.push_back(top);
+
             for (int v : adj[top])
             {
                 if (!visited[v])
@@ -68,24 +81,15 @@ public:
 
 int main()
 {
-    Graph g(5);
-    g.addEdge(1, 2);
+    Graph g(4);
+    g.addEdge(0, 1);
+    g.addEdge(0, 2);
     g.addEdge(1, 3);
-    g.addEdge(2, 5);
+    g.addEdge(2, 1);
+    g.addEdge(2, 3);
+    g.addEdge(2, 4);
     g.addEdge(3, 4);
-    g.addEdge(4, 5);
     g.printGraph();
-    vector<int> bfsVector = g.BFS(1);
-    cout << "bfsVector" << endl;
-    for (auto i : bfsVector)
-    {
-        cout << i << ",";
-    }
-    cout << endl;
-    vector<int> bfsVector1 = g.BFS(5); // if source is 5
-    cout << "bfsVector1" << endl;
-    for (auto i : bfsVector1)
-    {
-        cout << i << ",";
-    }
+    vector<int> bfsVector = g.BFS(0);
+    g.printGraph(bfsVector);
 }
