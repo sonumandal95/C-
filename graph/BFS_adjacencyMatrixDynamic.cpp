@@ -36,7 +36,7 @@ public:
     void printGraph(vector<int> bfs)
     {
         cout << "BFS" << endl;
-        for (int x : bfs)
+        for (int &x : bfs)
         {
             cout << x << ",";
         }
@@ -47,9 +47,9 @@ public:
     void printGraph()
     {
         cout << "Graph" << endl;
-        for (vector<int> u : adj)
+        for (vector<int> &u : adj)
         {
-            for (int v : u)
+            for (int &v : u)
             {
                 cout << v << " ";
             }
